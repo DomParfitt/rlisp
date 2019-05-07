@@ -39,7 +39,7 @@ impl Evaluator {
     fn eval_list(&mut self, list: Vec<Expr>, context: Rc<RefCell<Scope>>) -> Type {
         let mut results = vec!();
         for expr in list {
-            results.push(self.eval_expr(expr, context));
+            results.push(self.eval_expr(expr, Rc::clone(&context)));
         }
 
         Type::Seq(results)
